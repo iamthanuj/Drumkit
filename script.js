@@ -1,29 +1,24 @@
-
-window.addEventListener('keydown', function (e) {
-    // console.log(e)
-    const keyValue = e.which
-
-    const drumKeys = document.getElementsByClassName('key')
-    const audioFile = document.getElementsByTagName('audio')
-    // console.log(drumKeys)
-    for (let a = 0; a < drumKeys.length; a = a + 1) {
-        let audioValue = drumKeys[a]
-        let audioTag = audioFile[a]
-
-        if (keyValue == audioValue.dataset.key) {
-            audioTag.currentTime = 0;
-            audioTag.play()
-            audioValue.classList.add('press')
-        }
-    }
-    
-})
-
-function removeTransition(e){
-    if (e.propertyName !== 'transform') return;
-    console.log(e.propertyName)
-    this.classList.remove('press');
+const handlePlay = (keyId) => {
+  let drumKeys = document.querySelectorAll(`[data-key~="${keyId}"]`)[0];
+  let audio = document.querySelectorAll(`[data-key~="${keyId}"]`)[1];
+  if (audio) {
+    audio.currentTime = 0;
+    audio.play();
+    drumKeys.classList.add("press");
+  }
+};
+// key down listener
+window.addEventListener("keydown", (e) => {
+  handlePlay(e.keyCode);
+});
+// click listener
+document.querySelectorAll(".key").forEach((keynode) => {
+  keynode.addEventListener("click", () => handlePlay(keynode.dataset.key));
+});
+function removeTransition(e) {
+  if (e.propertyName !== "transform") return;
+  console.log(e.propertyName);
+  this.classList.remove("press");
 }
-
-const keys = document.querySelectorAll('.key');
-keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+const keys = document.querySelectorAll(".key");
+keys.forEach((key) => key.addEventListener("transitionend", removeTransition));
