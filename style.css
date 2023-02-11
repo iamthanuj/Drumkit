@@ -1,0 +1,59 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(images/drummer.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.key-layout {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 50px;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+}
+
+.key {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: grey;
+    width: 100px;
+    height: 100px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    transform: scale(1);
+    transition: all 0.07s;
+}
+
+.press {
+    color: yellow;
+    border-color: yellow;
+    transform: scale(1.1);
+}
+
+.ez {
+    font-size: 16px;
+    color: beige;
+}
+
+
+@media (max-width:1320px) {
+    .key-layout {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
